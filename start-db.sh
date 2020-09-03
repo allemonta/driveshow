@@ -1,0 +1,1 @@
+$HOME/mongodb/bin/mongod.exe --dbpath=./data/mongodb
