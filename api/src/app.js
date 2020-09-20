@@ -21,6 +21,9 @@ autoIncrement.initialize(db)
 const testRouter = require('./routers/testRouter')
 app.use('/api', testRouter)
 
+const authRouter = require('./routers/authRouter')
+app.use('/api', authRouter)
+
 /* ERROR HANDLER */
 app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
