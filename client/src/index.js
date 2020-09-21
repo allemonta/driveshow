@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppRouter from './routers/AppRouter'
 
-ReactDOM.render(
+const jsx = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <AppRouter />
+  </React.StrictMode>
 );
 
+ReactDOM.render(
+  jsx,
+  document.getElementById('root')
+);

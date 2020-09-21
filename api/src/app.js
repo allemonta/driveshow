@@ -1,28 +1,25 @@
 const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 require('dotenv').config()
+const db = require('./db/mongoose');
+
+const testRouter = require('./routers/testRouter')
+const authRouter = require('./routers/authRouter')
+const driveRouter = require('./routers/driveRouter')
 
 const app = express()
 const port = process.env.PORT
 
 /* APP CONFIG */
-const cors = require('cors')
-const bodyParser = require('body-parser')
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/* MONGODB */
-const db = require('./db/mongoose');
-const autoIncrement = require('mongoose-auto-increment')
-autoIncrement.initialize(db)
-//DefaultDevice.schema.plugin(autoIncrement.plugin, { model: 'DefaultDevice', field: 'position' })
-
 /* ROUTER */
-const testRouter = require('./routers/testRouter')
 app.use('/api', testRouter)
-
-const authRouter = require('./routers/authRouter')
 app.use('/api', authRouter)
+app.use('/api', driveRouter)
 
 /* ERROR HANDLER */
 app.use((err, req, res, next) => {
